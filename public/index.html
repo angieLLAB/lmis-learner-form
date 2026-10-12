@@ -33,6 +33,11 @@
     .field-wrap.full { grid-column: span 2; }
     .error-box { display: flex; align-items: center; gap: 0.5rem; background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; font-size: 0.875rem; border-radius: 0.75rem; padding: 0.75rem; margin-bottom: 1rem; }
     .success-card { background: white; border-radius: 1.5rem; border: 1px solid #e2e8f0; box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 28rem; width: 100%; padding: 2rem; text-align: center; }
+    .doc-btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1rem; background:white; color:#1e293b; font-size:0.8125rem; font-weight:600; border:1px solid #cbd5e1; border-radius:0.5rem; cursor:pointer; }
+    .doc-btn:hover { border-color:#eab308; background:#fefce8; }
+    .doc-name { font-size:0.75rem; color:#334155; word-break:break-all; }
+    .doc-remove { background:none; border:none; color:#b91c1c; font-size:0.75rem; font-weight:600; cursor:pointer; text-decoration:underline; padding:0; }
+    .doc-msg { font-size:0.75rem; margin:0.375rem 0 0; min-height:1rem; }
     @media (max-width: 600px) {
       .section-body { grid-template-columns: 1fr; }
       .field-wrap.full { grid-column: span 1; }
@@ -297,9 +302,45 @@
     </div>
   </div>
 
-  <!-- SECTION 6: Programme & Declaration -->
+  <!-- SECTION 6: Supporting Documents -->
   <div class="section">
-    <div class="section-header"><div class="section-num">6</div><div class="section-title">Programme &amp; Declaration</div></div>
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">Supporting Documents</div></div>
+    <div class="section-body">
+      <div class="field-wrap full">
+        <p id="docs-intro" style="font-size:0.75rem; color:#64748b; margin:0;"></p>
+      </div>
+      <div class="field-wrap full">
+        <label class="field-label" for="doc-cv">Short CV <span class="req doc-req" style="display:none;">*</span></label>
+        <input type="file" id="doc-cv" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" style="display:none;" onchange="onDocChosen('cv', this)" />
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <button type="button" class="doc-btn" onclick="document.getElementById('doc-cv').click()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload Short CV
+          </button>
+          <span id="doc-cv-name" class="doc-name"></span>
+          <button type="button" id="doc-cv-remove" class="doc-remove" style="display:none;" onclick="clearDoc('cv')">Remove</button>
+        </div>
+        <p id="doc-cv-msg" class="doc-msg" role="status"></p>
+      </div>
+      <div class="field-wrap full">
+        <label class="field-label" for="doc-matric">Certified copy of Matric Certificate <span class="req doc-req" style="display:none;">*</span></label>
+        <input type="file" id="doc-matric" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" style="display:none;" onchange="onDocChosen('matric', this)" />
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+          <button type="button" class="doc-btn" onclick="document.getElementById('doc-matric').click()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload certified copy of Matric Certificate
+          </button>
+          <span id="doc-matric-name" class="doc-name"></span>
+          <button type="button" id="doc-matric-remove" class="doc-remove" style="display:none;" onclick="clearDoc('matric')">Remove</button>
+        </div>
+        <p id="doc-matric-msg" class="doc-msg" role="status"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: Programme & Declaration -->
+  <div class="section">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">Programme &amp; Declaration</div></div>
     <div class="section-body">
       <div class="field-wrap full">
         <label class="field-label">Programme Applying For</label>
@@ -320,7 +361,7 @@
         <label class="field-label">Privacy Notice</label>
         <div id="privacy-notice" style="max-height:16rem; overflow-y:auto; background:#f8fafc; border:1px solid #e2e8f0; border-radius:0.75rem; padding:0.875rem; font-size:0.75rem; color:#374151; line-height:1.6;">
           <p style="margin:0 0 0.5rem;"><strong>Who we are.</strong> Learnership Lab (Pty) Ltd, 1 Johanna Street, Florentia, Alberton, 1449 (Reg. 2017/096491/07). Our Information Officer is Angie Booysen: angie@learnershiplab.co.za, 079 520 0186.</p>
-          <p style="margin:0 0 0.5rem;"><strong>What we collect.</strong> Your name, ID or alternative ID number, date of birth, contact and address details, language, nationality, education and employment details, and your signature. We also collect population group and disability status, which are special personal information.</p>
+          <p style="margin:0 0 0.5rem;"><strong>What we collect.</strong> Your name, ID or alternative ID number, date of birth, contact and address details, language, nationality, education and employment details, your signature, and, if you choose to upload them, a copy of your short CV and a certified copy of your Matric Certificate. We also collect population group and disability status, which are special personal information.</p>
           <p style="margin:0 0 0.5rem;"><strong>Why.</strong> To enrol you in a learnership or qualification, deliver and assess your training, and report to SAQA, the SETA and QCTO as required. We collect population group and disability status because we are required to report them to SAQA, the SETA and QCTO. Giving us this information is voluntary, but we cannot enrol you without it.</p>
           <p style="margin:0 0 0.5rem;"><strong>Who receives it.</strong> SAQA, the SETA, QCTO and your employer; and service providers who handle it for us: Supabase (database), Netlify (website hosting), Resend and Microsoft 365 (email and documents). Our staff may also use an external AI service (Anthropic) to read ID documents and certificates you provide.</p>
           <p style="margin:0 0 0.5rem;"><strong>Where it is stored.</strong> Your information is stored on servers in Ireland, and some of our providers are outside South Africa.</p>
@@ -374,7 +415,7 @@
   const SUPABASE_ANON = "sb_publishable_v9I3PmU_i4PgcGCxMBH_cQ_B7gy9iiP";
   // Version label of the privacy notice learners are shown. Table column is required.
   // Change this whenever the notice text changes. TODO: set to the approved version (e.g. "v1.0 2026-10-20") once reviewed.
-  const PRIVACY_NOTICE_VERSION = "v1.0-2026-10-10";
+  const PRIVACY_NOTICE_VERSION = "v1.1-2026-10-12";
 
   // Direct REST helper — new publishable key format only needs apikey header, no Bearer
   async function sbFetch(path, opts = {}) {
@@ -394,16 +435,151 @@
 
   // Insert ONE new row into public_intake. Nothing is read back, so the form
   // never sees any other learner's details (anon can insert only).
-  async function saveIntake(rec) {
+  async function saveIntake(rec, rowId) {
     await sbFetch("public_intake", {
       method: "POST",
       headers: { Prefer: "return=minimal" },
-      body: JSON.stringify(Object.assign(
-        { status: "Pending Review", privacy_notice_version: PRIVACY_NOTICE_VERSION, data: rec },
-        (window.crypto && crypto.randomUUID) ? { id: crypto.randomUUID() } : {}
-      )),
+      body: JSON.stringify({ id: rowId, status: "Pending Review", privacy_notice_version: PRIVACY_NOTICE_VERSION, data: rec }),
     });
   }
+
+  // ── Supporting documents: Short CV + certified copy of Matric Certificate ──────────
+  // Files go to a PRIVATE Supabase Storage bucket that the public can only ADD to
+  // (never list or read). The saved form row records where each file is.
+  const DOCS_BUCKET = "intake-uploads";
+  const REQUIRE_DOCUMENTS = false;               // true = learners must upload both before submitting
+  const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;     // 10 MB per file (also enforced by the bucket)
+  const SHRINK_ABOVE_BYTES = 1.5 * 1024 * 1024;  // phone photos bigger than this are reduced automatically
+  const DOC_LABELS = { cv: "Short CV", matric: "Certified copy of Matric Certificate" };
+  const docs = { cv: null, matric: null };       // { blob, mime, ext, fileName, size, uploadedPath }
+  let submissionId = null;                       // one id per submission; also the storage folder name
+  const docSeq = { cv: 0, matric: 0 };           // lets a newer choice cancel an older, slower one
+  const docPending = { cv: null, matric: null }; // file still being checked/shrunk; Submit waits for it
+
+  function randHex(nChars) {
+    const b = crypto.getRandomValues(new Uint8Array(nChars / 2));
+    return Array.from(b, x => x.toString(16).padStart(2, "0")).join("");
+  }
+  function newUuid() {
+    if (crypto.randomUUID) return crypto.randomUUID();
+    const b = crypto.getRandomValues(new Uint8Array(16));
+    b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80;
+    const h = Array.from(b, x => x.toString(16).padStart(2, "0")).join("");
+    return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;
+  }
+  function getSubmissionId() { if (!submissionId) submissionId = newUuid(); return submissionId; }
+
+  // Identify the real file type from its first bytes (not just its name).
+  async function sniffType(file) {
+    const buf = new Uint8Array(await file.slice(0, 8).arrayBuffer());
+    const starts = (...sig) => sig.every((v, i) => buf[i] === v);
+    if (starts(0x25, 0x50, 0x44, 0x46)) return { mime: "application/pdf", ext: "pdf" };
+    if (starts(0xFF, 0xD8, 0xFF)) return { mime: "image/jpeg", ext: "jpg" };
+    if (starts(0x89, 0x50, 0x4E, 0x47)) return { mime: "image/png", ext: "png" };
+    return null;
+  }
+
+  // Shrink a big photo to a readable JPEG (max 2000 px on the long side).
+  async function shrinkImage(file) {
+    const bmp = await createImageBitmap(file);
+    const scale = Math.min(1, 2000 / Math.max(bmp.width, bmp.height));
+    const c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round(bmp.width * scale));
+    c.height = Math.max(1, Math.round(bmp.height * scale));
+    const ctx = c.getContext("2d");
+    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, c.width, c.height);
+    ctx.drawImage(bmp, 0, 0, c.width, c.height);
+    if (bmp.close) bmp.close();
+    return await new Promise((resolve, reject) => c.toBlob(b => b ? resolve(b) : reject(new Error("toBlob failed")), "image/jpeg", 0.85));
+  }
+
+  function fmtSize(n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB"; }
+  function setDocMsg(key, text, isError) {
+    const el = document.getElementById(`doc-${key}-msg`);
+    el.textContent = text;
+    el.style.color = isError ? "#b91c1c" : "#059669";
+  }
+
+  function onDocChosen(key, input) {
+    docSeq[key] += 1;
+    const seq = docSeq[key];
+    docs[key] = null;
+    document.getElementById(`doc-${key}-name`).textContent = "";
+    document.getElementById(`doc-${key}-remove`).style.display = "none";
+    docPending[key] = processDoc(key, input, seq).then(() => { if (docSeq[key] === seq) docPending[key] = null; });
+    return docPending[key];
+  }
+
+  async function processDoc(key, input, seq) {
+    const file = input.files && input.files[0];
+    setDocMsg(key, "", false);
+    if (!file) return;
+    setDocMsg(key, "Checking file…", false);
+    try {
+      const type = await sniffType(file);
+      if (!type) throw new Error("Please choose a PDF, JPG or PNG file.");
+      let blob = file, mime = type.mime, ext = type.ext;
+      if (type.mime !== "application/pdf" && file.size > SHRINK_ABOVE_BYTES) {
+        try {
+          const small = await shrinkImage(file);
+          if (small.size < file.size) { blob = small; mime = "image/jpeg"; ext = "jpg"; }
+        } catch (e) { /* keep the original if shrinking is not possible */ }
+      }
+      if (blob.size === 0) throw new Error("That file is empty. Please choose another file.");
+      if (blob.size > MAX_UPLOAD_BYTES) throw new Error("That file is too large (maximum 10 MB). Please choose a smaller file.");
+      if (seq !== docSeq[key]) return;   // a newer file was chosen meanwhile
+      docs[key] = { blob, mime, ext, fileName: file.name, size: blob.size, uploadedPath: null };
+      document.getElementById(`doc-${key}-name`).textContent = `${file.name} (${fmtSize(blob.size)})`;
+      document.getElementById(`doc-${key}-remove`).style.display = "inline";
+      setDocMsg(key, "File ready. It is uploaded when you press Submit Form.", false);
+    } catch (e) {
+      if (seq !== docSeq[key]) return;
+      docs[key] = null;
+      input.value = "";
+      document.getElementById(`doc-${key}-name`).textContent = "";
+      document.getElementById(`doc-${key}-remove`).style.display = "none";
+      setDocMsg(key, e.message || "That file could not be used.", true);
+    }
+  }
+
+  function clearDoc(key) {
+    docSeq[key] += 1; docPending[key] = null;
+    docs[key] = null;
+    const input = document.getElementById(`doc-${key}`);
+    if (input) input.value = "";
+    document.getElementById(`doc-${key}-name`).textContent = "";
+    document.getElementById(`doc-${key}-remove`).style.display = "none";
+    setDocMsg(key, "", false);
+  }
+
+  // Upload any chosen files (skipping ones already uploaded on an earlier try).
+  async function uploadDocuments() {
+    const out = {};
+    const folder = getSubmissionId();
+    for (const key of Object.keys(docs)) {
+      const d = docs[key];
+      if (!d) continue;
+      if (!d.uploadedPath) {
+        const path = `${folder}/${key}-${randHex(16)}.${d.ext}`;
+        const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${DOCS_BUCKET}/${path}`, {
+          method: "POST",
+          headers: { apikey: SUPABASE_ANON, "Content-Type": d.mime },
+          body: d.blob,
+        });
+        if (!res.ok) throw new Error(`${DOC_LABELS[key]}: upload failed (${res.status})`);
+        d.uploadedPath = path;
+      }
+      out[key] = { path: d.uploadedPath, fileName: d.fileName, mime: d.mime, size: d.size };
+    }
+    return out;
+  }
+
+  (function initDocsSection() {
+    document.getElementById("docs-intro").textContent =
+      "Upload a clear scan or photo of each document (PDF, JPG or PNG, up to 10 MB). Large photos are reduced in size automatically. " +
+      (REQUIRE_DOCUMENTS ? "Both documents are required." : "These are optional: if you do not have them with you now, leave them blank and submit the form.");
+    if (REQUIRE_DOCUMENTS) document.querySelectorAll(".doc-req").forEach(el => { el.style.display = "inline"; });
+  })();
 
   // Parse cohort from URL hash (format: #cohortId or ?cohort=xxx)
   function getCohortId() {
@@ -476,6 +652,10 @@
     if (!g("f-cell")) return "A contact cell number is required.";
     if (!g("f-equity")) return "Please select your population group (equity code).";
     if (!g("f-gender")) return "Please select your gender.";
+    if (REQUIRE_DOCUMENTS) {
+      if (!docs.cv) return "Please upload your Short CV.";
+      if (!docs.matric) return "Please upload your certified copy of your Matric Certificate.";
+    }
     if (!gCheck("f-consent")) return "Please tick the declaration box to confirm your details are correct.";
     if (!g("f-signature")) return "Please type your full name in the signature field.";
     return "";
@@ -483,12 +663,19 @@
 
   async function submitForm() {
     hideError();
+    const stillChecking = [docPending.cv, docPending.matric].filter(Boolean);
+    if (stillChecking.length) {
+      const b0 = document.getElementById("submit-btn");
+      b0.disabled = true; b0.textContent = "Checking files…";
+      await Promise.all(stillChecking);
+      b0.disabled = false;
+    }
     const err = validate();
     if (err) { showError(err); return; }
 
     const btn = document.getElementById("submit-btn");
     btn.disabled = true;
-    btn.textContent = "Submitting…";
+    btn.textContent = (docs.cv || docs.matric) ? "Uploading documents…" : "Submitting…";
 
     const cohortId = getCohortId();
     const parts = cohortId.split("--");
@@ -529,12 +716,21 @@
       cohortId, cohortLabel, clientRef,
     };
 
-    // Save one row to Supabase public_intake. If it fails, tell the learner honestly.
+    // 1) upload any documents, 2) save one row to Supabase public_intake.
+    // If either step fails, tell the learner honestly and keep the form filled in.
+    let stage = "documents";
     try {
-      await saveIntake(rec);
+      const uploaded = await uploadDocuments();
+      if (Object.keys(uploaded).length) { rec.documents = uploaded; rec.documentsBucket = DOCS_BUCKET; }
+      stage = "form";
+      btn.textContent = "Submitting…";
+      await saveIntake(rec, getSubmissionId());
+      submissionId = null;
     } catch (ex) {
-      console.error("Submission failed:", ex);
-      showError("We could not submit your form. Please check your internet connection and try again. If it keeps failing, contact Learnership Lab on 082 680 9636 / 079 520 0186.");
+      console.error("Submission failed at " + stage + ":", ex);
+      showError(stage === "documents"
+        ? "We could not upload your documents. Please check your internet connection and try again. If it keeps failing, contact Learnership Lab on 082 680 9636 / 079 520 0186."
+        : "We could not submit your form. Please check your internet connection and try again. If it keeps failing, contact Learnership Lab on 082 680 9636 / 079 520 0186.");
       btn.disabled = false;
       btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Form';
       return;
@@ -575,6 +771,7 @@
     document.getElementById("f-schoolQual").value = "";
     document.getElementById("f-programmeId").value = "";
     document.getElementById("f-consent").checked = false;
+    clearDoc("cv"); clearDoc("matric"); submissionId = null;
     document.getElementById("f-disabilityDetail-wrap").style.display = "none";
     document.getElementById("employed-fields").style.display = "none";
 
